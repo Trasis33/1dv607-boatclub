@@ -6,7 +6,8 @@ namespace _1dv607_boatclub
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+          var Application = new Application();
+          Application.start();
         }
     }
 }
