@@ -23,10 +23,10 @@ namespace _1dv607_boatclub
         try
         {
 
-          Console.WriteLine("\n1: Member login\n2: Admin login\n3: Add member\n4 Exit\n");
+          Console.WriteLine("\n1: Add member\n2: Display members\n3 Exit\n");
           value = int.Parse(Console.ReadLine());
 
-          if(value <= 0 || value >= 5)
+          if(value <= 0 || value >= 3)
           {
             throw new ArgumentOutOfRangeException();
           }
@@ -34,15 +34,12 @@ namespace _1dv607_boatclub
           switch(value)
           {
             case 1:
-              isAdmin = false;
-              break;
-            case 2:
-              isAdmin = true;
-              break;
-            case 3:
               addMember();
               break;
-            case 4:
+            // case 2:
+            //   displayMembers();
+            //   break;
+            case 2:
               Environment.Exit(0);
               break;
           }
@@ -68,8 +65,13 @@ namespace _1dv607_boatclub
       IDNumber = Console.ReadLine();
 
       UserModel user = new UserModel(name, IDNumber);
+      displayMembers(user);
+      return;
+    }
 
-      Console.WriteLine(user.showUser());
+    public void displayMembers(UserModel user)
+    {
+      Console.WriteLine(user.ToString("V"));
     }
   }
 }

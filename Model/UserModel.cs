@@ -44,8 +44,29 @@ namespace _1dv607_boatclub
               _IDNumber = value;
           }
       }
-      public string showUser () {
-          return $"Name: {UserName} ID Number: {IDNumber}";
-          }
+
+      public override string ToString()
+    {
+      return ToString("C");
+    }
+
+    public string ToString(string format)
+    {
+      if(string.IsNullOrWhiteSpace(format))
+      {
+        format = "C";
       }
+
+      switch (format)
+      {
+        case "C":
+          return string.Format("{0}", UserName);
+        case "V":
+          return string.Format("{0} {1}", UserName, IDNumber);
+        default:
+        string msg = string.Format("'{0}' is an invalid format string.", format);
+        throw new ArgumentException(msg);
+      }
+    }
+  }
 }
