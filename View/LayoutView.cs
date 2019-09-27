@@ -1,50 +1,66 @@
 using System;
-
 namespace _1dv607_boatclub
 {
   class LayoutView
   {
-
-    MainController mainController = new MainController();
+    // MainController mainController = new MainController();
     public LayoutView()
     {
-
+    }
+    public void menuOptions () {
+      Console.WriteLine("\n1: Add member\n2: Display members\n3 Exit\n");
     }
 
-    public void menu()
+    public UserModel addMember()
     {
-        int value;
-        bool isProgramRunning = true;
-      while(isProgramRunning)
-      {
-        try
-        {
+      string name;
+      string IDNumber;
 
-          Console.WriteLine("\n1: Add member\n2: Display members\n3 Exit\n");
-          value = int.Parse(Console.ReadLine());
+      Console.WriteLine("Enter your name:\n");
+      name = Console.ReadLine();
 
-          if(value <= 0 || value >= 4)
-          {
-            throw new ArgumentOutOfRangeException();
-          }
+      Console.WriteLine("Enter your personal ID number:\n");
+      IDNumber = Console.ReadLine();
 
-          switch(value)
-          {
-            case 1:
-              mainController.menuSelection(1);
-              break;
-            case 2:
-              mainController.menuSelection(2);
-              break;
-            case 3:
-              isProgramRunning = false;
-              break;
-          }
-        } catch (Exception)
-        {
-          Console.WriteLine("\n Only valid input.\n");
-        }
-      }
+      UserModel user = new UserModel(name, IDNumber);
+      return user;
     }
+    public void render(string input) {
+      var ret = "";
+      ret += input;
+      Console.WriteLine(ret);
+    }
+    // public void menu()
+    // {
+    //     int value;
+    //     bool isProgramRunning = true;
+    //   while(isProgramRunning)
+    //   {
+    //     try
+    //     {
+    //       Console.WriteLine("\n1: Add member\n2: Display members\n3 Exit\n");
+    //       value = int.Parse(Console.ReadLine());
+    //       if(value <= 0 || value >= 4)
+    //       {
+    //         throw new ArgumentOutOfRangeException();
+    //       }
+    //       switch(value)
+    //       {
+    //         case 1:
+    //           mainController.menuSelection(1);
+    //           break;
+    //         case 2:
+    //           mainController.menuSelection(2);
+    //           break;
+    //         case 3:
+    //           isProgramRunning = false;
+    //           break;
+    //       }
+    //     } catch (Exception)
+    //     {
+    //       Console.WriteLine("\n Only valid input.\n");
+    //     }
+    //   }
+    // }
   }
 }
