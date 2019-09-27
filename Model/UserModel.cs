@@ -1,4 +1,5 @@
 using System;
+using System.Text.RegularExpressions;
 
 namespace _1dv607_boatclub
 {
@@ -6,13 +7,14 @@ namespace _1dv607_boatclub
   class UserModel
   {
       private string _userName;
-      private string _userPassword;
-      private string _userID;
+      private string _IDNumber;
+      Regex rx = new Regex("^[0-9]+$");
+      // private string _userID;
 
-      public UserModel(string name, string password)
+      public UserModel(string name, string ID)
       {
           UserName = name;
-          Password = password;
+          IDNumber = ID;
       }
 
       public string UserName
@@ -29,18 +31,21 @@ namespace _1dv607_boatclub
           }
       }
 
-      public string Password
+      public string IDNumber
       {
-          get => _userPassword;
+          get => _IDNumber;
           set
           {
-              if(String.IsNullOrWhiteSpace(value))
+              if(String.IsNullOrWhiteSpace(value) && !rx.IsMatch(value))
               {
                   throw new ArgumentException();
               }
 
-              _userPassword = value;
+              _IDNumber = value;
           }
       }
-  }
+      public string showUser () {
+          return $"Name: {UserName} ID Number: {IDNumber}";
+          }
+      }
 }

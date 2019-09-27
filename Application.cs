@@ -5,13 +5,16 @@ namespace _1dv607_boatclub
 {
   class Application
   {
+    // public BoatModel _boat;
     public void start()
     {
       bool MemberOrAdmin = menu();
+      // _boat = new BoatModel(BoatTypes.Motorsailer, 21);
     }
 
-    private bool menu()
+    public bool menu()
     {
+
       int value;
       bool isAdmin = false;
 
@@ -19,10 +22,11 @@ namespace _1dv607_boatclub
       {
         try
         {
-          Console.WriteLine("\n1: Member login\n2: Admin login\n3 Exit\n");
+
+          Console.WriteLine("\n1: Member login\n2: Admin login\n3: Add member\n4 Exit\n");
           value = int.Parse(Console.ReadLine());
 
-          if(value <= 0 || value >= 3)
+          if(value <= 0 || value >= 5)
           {
             throw new ArgumentOutOfRangeException();
           }
@@ -36,6 +40,9 @@ namespace _1dv607_boatclub
               isAdmin = true;
               break;
             case 3:
+              addMember();
+              break;
+            case 4:
               Environment.Exit(0);
               break;
           }
@@ -49,9 +56,20 @@ namespace _1dv607_boatclub
 
     }
 
-    // static bool query()
-    // {
+    public void addMember()
+    {
+      string name;
+      string IDNumber;
 
-    // }
+      Console.WriteLine("Enter your name:\n");
+      name = Console.ReadLine();
+
+      Console.WriteLine("Enter your personal ID number:\n");
+      IDNumber = Console.ReadLine();
+
+      UserModel user = new UserModel(name, IDNumber);
+
+      Console.WriteLine(user.showUser());
+    }
   }
 }
