@@ -6,8 +6,9 @@ namespace _1dv607_boatclub
     {
         static void Main(string[] args)
         {
-          var Application = new Application();
-          Application.start();
+          var layoutView = new LayoutView();
+
+          layoutView.menu();
         }
     }
 }
