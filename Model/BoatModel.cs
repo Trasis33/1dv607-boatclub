@@ -10,7 +10,7 @@ namespace _1dv607_boatclub
         public BoatModel(BoatTypes types, double length)
         {
             _type = types;
-            BoatLength = length;
+            _boatLength = length;
         }
 
         public double BoatLength
