@@ -8,13 +8,15 @@ namespace _1dv607_boatclub
     private LayoutView _layoutView;
     private MainController _mainController;
     private MemberController _memberController;
-    private UserStorage _userStorage;
+    private BoatController _boatController;
+    private Storage _storage;
     public Application()
     {
-      _userStorage = new UserStorage();
+      _storage = new Storage();
       _layoutView = new LayoutView();
-      _mainController = new MainController(_userStorage);
-      _memberController = new MemberController(_userStorage);
+      _mainController = new MainController(_storage);
+      _memberController = new MemberController(_storage);
+      _boatController = new BoatController(_storage);
     }
     public void run()
     {
@@ -35,7 +37,7 @@ namespace _1dv607_boatclub
 
           value = int.Parse(Console.ReadLine());
 
-          if(value <= 0 || value >= 5)
+          if(value <= 0 || value >= 7)
           {
             throw new ArgumentOutOfRangeException();
           }
@@ -52,6 +54,12 @@ namespace _1dv607_boatclub
               _memberController.deleteMember();
               break;
             case 4:
+              _boatController.addBoat();
+              break;
+            case 5:
+              _boatController.showBoatsList();
+              break;
+            case 6:
               isProgramRunning = false;
               break;
           }

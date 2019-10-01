@@ -5,30 +5,30 @@ namespace _1dv607_boatclub
     class MemberController
     {
         private MemberView _memberView;
-        private UserStorage _userStorage;
-        public MemberController(UserStorage userStorage)
+        private Storage _storage;
+        public MemberController(Storage storage)
         {
-            _userStorage = userStorage;
+            _storage = storage;
             _memberView = new MemberView();
         }
         public void addMember()
         {
             MemberModel user = _memberView.getNewMemberCredentials();
-            _userStorage.saveNewUserToStorage(user);
-        } 
+            _storage.saveNewUserToStorage(user);
+        }
 
         public void deleteMember()
         {
             string userID = _memberView.memberToDeleteById();
-            _userStorage.deleteUser(userID);
+            _storage.deleteUser(userID);
         }
 
         public void showMembersList()
         {
-            var users = _userStorage.retrieveUserList();
+            var users = _storage.retrieveUserList();
             _memberView.showMembersList(users);
         }
 
-    }   
+    }
 
 }

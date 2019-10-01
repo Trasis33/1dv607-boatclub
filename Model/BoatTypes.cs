@@ -4,7 +4,7 @@ namespace _1dv607_boatclub
 {
     public enum BoatTypes
     {
-    Sailboat,
+    Sailboat = 1,
     Motorsailer,
     kayak,
     Canoe,

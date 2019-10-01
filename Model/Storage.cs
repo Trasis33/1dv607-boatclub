@@ -4,9 +4,10 @@ using System.Linq;
 
 namespace _1dv607_boatclub
 {
-  class UserStorage
+  class Storage
   {
   private List<MemberModel> _users = new List<MemberModel>();
+  private List<BoatModel> _boats = new List<BoatModel>();
 
     public void saveNewUserToStorage(MemberModel user)
     {
@@ -20,6 +21,16 @@ namespace _1dv607_boatclub
     public List<MemberModel> retrieveUserList()
     {
       return _users;
+    }
+
+    public void saveNewBoatToStorage(BoatModel boat)
+    {
+      _boats.Add(boat);
+    }
+
+    public List<BoatModel> retrieveBoatList()
+    {
+      return _boats;
     }
 
   }
