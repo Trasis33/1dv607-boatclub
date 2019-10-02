@@ -8,8 +8,8 @@ namespace _1dv607_boatclub
     {
     public MemberModel getNewMemberCredentials()
         {
-            string name;
-            string IDNumber;
+            string name; // new user name
+            string IDNumber;    // new user personal number
 
             Console.WriteLine("Enter your name:\n");
             name = Console.ReadLine();
@@ -17,9 +17,45 @@ namespace _1dv607_boatclub
             Console.WriteLine("Enter your personal ID number:\n");
             IDNumber = Console.ReadLine();
 
-            MemberModel user = new MemberModel(name, IDNumber);
-            return user;
+            Console.WriteLine("Do you want to add a boat? Yes/No");
+
+            string inputString = Console.ReadLine();
+            
+            if (inputString.ToLower() == "yes" || inputString.ToLower() == "y")
+            {
+                BoatModel boat = addBoat();
+                return new MemberModel(name, IDNumber, boat);
+            } else {
+                return new MemberModel(name, IDNumber);
+            }
         }
+
+        private BoatModel addBoat()
+        {
+            int value;
+            int boatTypeValue = 0;
+            double length;
+            bool hasBoatBeenSelected = false;
+
+            while (!hasBoatBeenSelected) {
+                Console.WriteLine("\n1: Sailboat\n2: Motorsailer\n3: Kayak\n4: Canoe\n5: Other");
+                value = int.Parse(Console.ReadLine());
+
+                if (!Enum.IsDefined(typeof(BoatTypes), value)) {
+                    Console.WriteLine("Not a valid type");
+                } else {
+                    hasBoatBeenSelected = true;
+                }
+
+                boatTypeValue = value;
+            }
+
+            Console.WriteLine("Input the length of the boat\n");
+            length = double.Parse(Console.ReadLine());
+
+            return new BoatModel((BoatTypes)boatTypeValue, length);
+        }
+
 
         public string memberToDeleteById()
         {
@@ -34,7 +70,11 @@ namespace _1dv607_boatclub
         {
             foreach (MemberModel username in users)
             {
-            Console.WriteLine(username.ToString("V"));
+                if (username.hasBoat()) {
+                    Console.WriteLine(username.ToString("V"));
+                } else {
+                    Console.WriteLine(username.ToString("U"));
+                }
             }
         }
     }

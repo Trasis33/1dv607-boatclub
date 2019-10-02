@@ -29,6 +29,14 @@ namespace _1dv607_boatclub
             _memberView.showMembersList(users);
         }
 
+        public void editUserInformation() {
+            // MemberModel member = _memberView.memberToEdit();
+            // member = _memberModel.retriveMemberToEdit();
+            // MemberModel editedMember = _memberView.showEditMemberMenu(member);
+            // _storage.saveUser(editedMember);
+            Console.WriteLine("DU är i edit usermenyn");
+        }
+
     }
 
 }

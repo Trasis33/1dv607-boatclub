@@ -14,5 +14,10 @@ namespace _1dv607_boatclub
       _layoutView = new LayoutView();
       _storage = storage;
     }
+
+    public void runMainMenu()
+    {
+      _layoutView.menuOptions();
+    }
   }
 }

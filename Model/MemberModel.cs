@@ -1,5 +1,7 @@
 using System;
 using System.Text.RegularExpressions;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace _1dv607_boatclub
 {
@@ -8,44 +10,65 @@ namespace _1dv607_boatclub
   {
       private string _userName;
       private string _IDNumber;
+      private BoatModel _boat;
       Regex rx = new Regex("^[0-9]+$");
-      // private string _userID;
 
-      public MemberModel(string name, string ID)
+    public MemberModel(string name, string ID) {
+        UserName = name;
+        IDNumber = ID;
+    }
+    public MemberModel(string name, string ID, BoatModel boat)
+    {
+        UserName = name;
+        IDNumber = ID;
+        _boat = boat;
+    }
+
+    public string UserName
+    {
+        get => _userName;
+        set
+        {
+            if(String.IsNullOrWhiteSpace(value))
+            {
+                throw new ArgumentException();
+            }
+
+            _userName = value;
+        }
+    }
+
+    public string IDNumber
+    {
+        get => _IDNumber;
+        set
+        {
+            if(String.IsNullOrWhiteSpace(value) && !rx.IsMatch(value))
+            {
+                throw new ArgumentException();
+            }
+
+            _IDNumber = value;
+        }
+    }
+
+    public BoatModel Boat
+    {
+      get => _boat;
+    }
+
+    public bool hasBoat()
+    {
+      if (Boat != null)
       {
-          UserName = name;
-          IDNumber = ID;
-      }
-
-      public string UserName
+        return true;
+      } else 
       {
-          get => _userName;
-          set
-          {
-              if(String.IsNullOrWhiteSpace(value))
-              {
-                  throw new ArgumentException();
-              }
-
-              _userName = value;
-          }
+        return false;
       }
+    }
 
-      public string IDNumber
-      {
-          get => _IDNumber;
-          set
-          {
-              if(String.IsNullOrWhiteSpace(value) && !rx.IsMatch(value))
-              {
-                  throw new ArgumentException();
-              }
-
-              _IDNumber = value;
-          }
-      }
-
-      public override string ToString()
+    public override string ToString()
     {
       return ToString("C");
     }
@@ -60,8 +83,10 @@ namespace _1dv607_boatclub
       switch (format)
       {
         case "C":
-          return string.Format("{0}", UserName);
+          return string.Format("{0} {1} {3} {2}", UserName, _boat.BoatLength, _boat.Type);
         case "V":
+          return string.Format("{0} {1} {3} {2}", UserName, IDNumber, _boat.BoatLength, _boat.Type);
+        case "U":
           return string.Format("{0} {1}", UserName, IDNumber);
         default:
         string msg = string.Format("'{0}' is an invalid format string.", format);

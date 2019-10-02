@@ -6,7 +6,6 @@ namespace _1dv607_boatclub
     {
         private BoatTypes _type;
         private double _boatLength;
-
         public BoatModel(BoatTypes types, double length)
         {
             _type = types;
@@ -30,10 +29,6 @@ namespace _1dv607_boatclub
         public BoatTypes Type
         {
             get => _type;
-        }
-
-        public string showBoat () {
-          return $"Type: {_type} Length: {_boatLength}";
         }
     }
 }

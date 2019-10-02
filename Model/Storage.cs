@@ -7,7 +7,6 @@ namespace _1dv607_boatclub
   class Storage
   {
   private List<MemberModel> _users = new List<MemberModel>();
-  private List<BoatModel> _boats = new List<BoatModel>();
 
     public void saveNewUserToStorage(MemberModel user)
     {
@@ -23,15 +22,15 @@ namespace _1dv607_boatclub
       return _users;
     }
 
-    public void saveNewBoatToStorage(BoatModel boat)
-    {
-      _boats.Add(boat);
-    }
+    // public void saveNewBoatToStorage(BoatModel boat)
+    // {
+    //   _boats.Add(boat);
+    // }
 
-    public List<BoatModel> retrieveBoatList()
-    {
-      return _boats;
-    }
+    // public List<BoatModel> retrieveBoatList()
+    // {
+    //   return _boats;
+    // }
 
   }
 }

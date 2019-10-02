@@ -8,7 +8,6 @@ namespace _1dv607_boatclub
     private LayoutView _layoutView;
     private MainController _mainController;
     private MemberController _memberController;
-    private BoatController _boatController;
     private Storage _storage;
     public Application()
     {
@@ -16,7 +15,6 @@ namespace _1dv607_boatclub
       _layoutView = new LayoutView();
       _mainController = new MainController(_storage);
       _memberController = new MemberController(_storage);
-      _boatController = new BoatController(_storage);
     }
     public void run()
     {
@@ -31,13 +29,14 @@ namespace _1dv607_boatclub
 
       while(isProgramRunning)
       {
+        _mainController.runMainMenu();
+        
         try
         {
-          _layoutView.menuOptions();
 
           value = int.Parse(Console.ReadLine());
 
-          if(value <= 0 || value >= 7)
+          if(value <= 0 || value >= 6)
           {
             throw new ArgumentOutOfRangeException();
           }
@@ -54,18 +53,15 @@ namespace _1dv607_boatclub
               _memberController.deleteMember();
               break;
             case 4:
-              _boatController.addBoat();
+              _memberController.editUserInformation();
               break;
             case 5:
-              _boatController.showBoatsList();
-              break;
-            case 6:
               isProgramRunning = false;
               break;
           }
         } catch (Exception)
         {
-          Console.WriteLine("\n Only valid input.\n");
+          Console.WriteLine("Only valid input.\n");
         }
       }
     }

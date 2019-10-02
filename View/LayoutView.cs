@@ -10,7 +10,7 @@ namespace _1dv607_boatclub
     {
     }
     public void menuOptions () {
-      Console.WriteLine("\n1: Add member\n2: Display members\n3: Delete member\n4: Add Boat\n5: Display Boats\n6: Exit\n");
+      Console.WriteLine("\n1: Add member\n2: Display members\n3: Delete member\n4: Edit Member\n5: Exit\n");
     }
 
     public void render(string input) {
