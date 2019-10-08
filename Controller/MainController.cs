@@ -4,20 +4,20 @@ using System.Linq;
 
 namespace _1dv607_boatclub
 {
-  class MainController
-  {
-    LayoutView _layoutView;
-    Storage _storage;
-
-    public MainController(Storage storage)
+    class MainController
     {
-      _layoutView = new LayoutView();
-      _storage = storage;
-    }
+        LayoutView _layoutView;
+        Storage _storage;
 
-    public void runMainMenu()
-    {
-      _layoutView.menuOptions();
+        public MainController (Storage storage)
+        {
+            _layoutView = new LayoutView ();
+            _storage = storage;
+        }
+
+        public void runMainMenu ()
+        {
+            _layoutView.menuOptions ();
+        }
     }
-  }
 }

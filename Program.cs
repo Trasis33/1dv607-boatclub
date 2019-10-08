@@ -4,10 +4,10 @@ namespace _1dv607_boatclub
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main (string[] args)
         {
-          var application = new Application();
-          application.run();
+            var application = new Application ();
+            application.run ();
         }
     }
 }

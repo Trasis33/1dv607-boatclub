@@ -4,19 +4,21 @@ using System.Linq;
 
 namespace _1dv607_boatclub
 {
-  class LayoutView
-  {
-    public LayoutView()
+    class LayoutView : SharedView
     {
-    }
-    public void menuOptions () {
-      Console.WriteLine("\n1: Add member\n2: Display members\n3: Delete member\n4: Edit Member\n5: Exit\n");
-    }
+        public LayoutView () { }
+        public void menuOptions ()
+        {
+            SharedView.printSectionSeparationLine ();
+            Console.WriteLine ("1: Add member\n2: Display members\n3: Delete member\n4: Edit Member\n5: Exit");
+            SharedView.printSectionSeparationLine ();
+        }
 
-    public void render(string input) {
-      var ret = "";
-      ret += input;
-      Console.WriteLine(ret);
+        public void render (string input)
+        {
+            var ret = "";
+            ret += input;
+            Console.WriteLine (ret);
+        }
     }
-  }
 }

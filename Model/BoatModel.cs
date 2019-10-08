@@ -6,7 +6,7 @@ namespace _1dv607_boatclub
     {
         private BoatTypes _type;
         private double _boatLength;
-        public BoatModel(BoatTypes types, double length)
+        public BoatModel (BoatTypes types, double length)
         {
             _type = types;
             _boatLength = length;
@@ -18,9 +18,9 @@ namespace _1dv607_boatclub
 
             set
             {
-                if(value <= 0)
+                if (value <= 0)
                 {
-                    throw new ArgumentOutOfRangeException();
+                    throw new ArgumentOutOfRangeException ();
                 }
 
                 _boatLength = value;
