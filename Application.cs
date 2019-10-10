@@ -7,12 +7,12 @@ namespace _1dv607_boatclub
     {
         private MainController _mainController;
         private MemberController _memberController;
-        private Storage _storage;
+        // private Storage _storage;
         public Application ()
         {
-            _storage = new Storage ();
-            _mainController = new MainController (_storage);
-            _memberController = new MemberController (_storage);
+            // _storage = new Storage ();
+            _mainController = new MainController ();
+            _memberController = new MemberController ();
         }
         public void run ()
         {

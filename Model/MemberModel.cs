@@ -9,7 +9,8 @@ namespace _1dv607_boatclub
     class MemberModel
     {
         private string _userName;
-        private string _IDNumber;
+        private string _personalNumber;
+        private string _ID;
         private BoatModel _boat;
         Regex rx = new Regex ("^[0-9]+$");
 
@@ -17,15 +18,17 @@ namespace _1dv607_boatclub
         {
 
         }
-        public MemberModel (string name, string ID)
+        public MemberModel (string name, string personalNumber, string ID = "")
         {
+            ID = "";
             UserName = name;
-            IDNumber = ID;
+            PersonalNumber = personalNumber;
         }
-        public MemberModel (string name, string ID, BoatModel boat)
+        public MemberModel (string name, string personalNumber, BoatModel boat, string ID = "")
         {
+            ID = "";
             UserName = name;
-            IDNumber = ID;
+            PersonalNumber = personalNumber;
             _boat = boat;
         }
 
@@ -43,9 +46,9 @@ namespace _1dv607_boatclub
             }
         }
 
-        public string IDNumber
+        public string PersonalNumber
         {
-            get => _IDNumber;
+            get => _personalNumber;
             set
             {
                 if (String.IsNullOrWhiteSpace (value) && !rx.IsMatch (value))
@@ -53,7 +56,21 @@ namespace _1dv607_boatclub
                     throw new ArgumentException ();
                 }
 
-                _IDNumber = value;
+                _personalNumber = value;
+            }
+        }
+
+        public string ID
+        {
+            get => _ID;
+            set
+            {
+                if (String.IsNullOrWhiteSpace (value))
+                {
+                    throw new ArgumentException ();
+                }
+
+                _ID = value;
             }
         }
 
@@ -91,9 +108,9 @@ namespace _1dv607_boatclub
                 case "C":
                     return string.Format ("{0} {1} {3} {2}", UserName, _boat.BoatLength, _boat.Type);
                 case "V":
-                    return string.Format ("{0} {1} {3} {2}", UserName, IDNumber, _boat.BoatLength, _boat.Type);
+                    return string.Format ("{0} {1} {3} {2}", UserName, PersonalNumber, _boat.BoatLength, _boat.Type);
                 case "U":
-                    return string.Format ("{0} {1}", UserName, IDNumber);
+                    return string.Format ("{0} {1}", UserName, PersonalNumber);
                 default:
                     string msg = string.Format ("'{0}' is an invalid format string.", format);
                     throw new ArgumentException (msg);

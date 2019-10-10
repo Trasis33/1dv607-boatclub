@@ -7,12 +7,12 @@ namespace _1dv607_boatclub
     class MainController
     {
         LayoutView _layoutView;
-        Storage _storage;
+        // Storage _storage;
 
-        public MainController (Storage storage)
+        public MainController ()
         {
             _layoutView = new LayoutView ();
-            _storage = storage;
+            // _storage = storage;
         }
 
         public void runMainMenu ()

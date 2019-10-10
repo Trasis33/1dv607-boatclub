@@ -7,9 +7,9 @@ namespace _1dv607_boatclub
         private MemberView _memberView;
         private MemberModel _memberModel;
         private Storage _storage;
-        public MemberController (Storage storage)
+        public MemberController ()
         {
-            _storage = storage;
+            _storage = new Storage ();
             _memberModel = new MemberModel ();
             _memberView = new MemberView (_memberModel);
         }
@@ -27,8 +27,8 @@ namespace _1dv607_boatclub
 
         public void showMembersList ()
         {
-            var users = _storage.retrieveUserList ();
-            _memberView.showMembersList (users);
+            // var users = _storage.retrieveUserList ();
+            // _memberView.showMembersList (users);
         }
 
         public void editUserInformation ()
