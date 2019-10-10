@@ -21,14 +21,14 @@ namespace _1dv607_boatclub
 
         public void deleteMember ()
         {
-            string userID = _memberView.memberToDeleteById ();
-            _storage.deleteUser (userID);
+            string memberID = _memberView.memberToDeleteById ();
+            _storage.deleteMember (memberID);
         }
 
         public void showMembersList ()
         {
-            // var users = _storage.retrieveUserList ();
-            // _memberView.showMembersList (users);
+            var users = _storage.retrieveMembersList ();
+            _memberView.showMembersList (users);
         }
 
         public void editUserInformation ()

@@ -8,34 +8,28 @@ namespace _1dv607_boatclub
 {
     class Storage
     {
-        private List<MemberModel> _users;
+        private List<MemberModel> _members;
         private string _memberID;
         static string workingDirectory = Environment.CurrentDirectory;
 
         public Storage ()
         {
-            _users = retrieveUserList ();
+            Members = retrieveMembersList ();
         }
-        public void saveNewUserToStorage (MemberModel user)
+        public void saveNewUserToStorage (MemberModel member)
         {
             updateMemberID ();
-            user.ID = MemberID;
-            _users.Add (user);
-            saveToFile (_users);
+            member.ID = MemberID;
+            Members.Add (member);
+            saveToFile (Members);
 
         }
-        public void deleteUser (string userID)
-        {
-            _users.Remove (_users.Find (u => u.PersonalNumber == userID));
-        }
 
-        public List<MemberModel> retrieveUserList ()
+        public List<MemberModel> retrieveMembersList ()
         {
-            string result = string.Empty;
-
-            using (StreamReader r = new StreamReader (Path.Combine (workingDirectory, "db.json")))
+            using (StreamReader reader = new StreamReader (Path.Combine (workingDirectory, "db.json")))
             {
-                var json = r.ReadToEnd ();
+                var json = reader.ReadToEnd ();
                 if (json.Length == 0)
                 {
                     return new List<MemberModel> ();
@@ -47,17 +41,23 @@ namespace _1dv607_boatclub
             }
         }
 
+        private void updateMemberID ()
+        {
+            int lastUsedID = int.Parse (getMemberID ());
+            lastUsedID += 1;
+            MemberID = lastUsedID.ToString ();
+            setNewMemberID (MemberID);
+        }
+
         public void saveToFile (List<MemberModel> members)
         {
             StreamWriter writer = null;
             try
             {
-                var contentsToWriteToFile = JsonConvert.SerializeObject (members);
+                string Memberstring = JsonConvert.SerializeObject (members, Formatting.Indented);
+
                 writer = new StreamWriter (Path.Combine (workingDirectory, "db.json"));
-
-                string userString = JsonConvert.SerializeObject (members, Formatting.Indented);
-
-                writer.Write (userString);
+                writer.Write (Memberstring);
             }
             finally
             {
@@ -73,12 +73,10 @@ namespace _1dv607_boatclub
             StreamWriter writer = null;
             try
             {
-                var contentsToWriteToFile = JsonConvert.SerializeObject (newMemberID);
+                string ID = JsonConvert.SerializeObject (newMemberID, Formatting.Indented);
+
                 writer = new StreamWriter (Path.Combine (workingDirectory, "memberID.json"));
-
-                string IDString = JsonConvert.SerializeObject (newMemberID, Formatting.Indented);
-
-                writer.Write (IDString);
+                writer.Write (ID);
             }
             finally
             {
@@ -91,22 +89,24 @@ namespace _1dv607_boatclub
 
         private string getMemberID ()
         {
-            string result = string.Empty;
-
-            using (StreamReader r = new StreamReader (Path.Combine (workingDirectory, "memberID.json")))
+            using (StreamReader reader = new StreamReader (Path.Combine (workingDirectory, "memberID.json")))
             {
-                var json = r.ReadToEnd ();
-                string memberID = JsonConvert.DeserializeObject<string> (json);
-                return memberID;
+                var json = reader.ReadToEnd ();
+                string ID = JsonConvert.DeserializeObject<string> (json);
+                return ID;
             }
         }
 
-        private void updateMemberID ()
+        public void deleteMember (string memberID)
         {
-            int lastUsedID = int.Parse (getMemberID ());
-            lastUsedID += 1;
-            MemberID = lastUsedID.ToString ();
-            setNewMemberID (MemberID);
+            Members.Remove (Members.Find (u => u.ID == memberID));
+            saveToFile (Members);
+        }
+
+        public List<MemberModel> Members
+        {
+            get => _members;
+            set => _members = value;
         }
 
         public string MemberID
