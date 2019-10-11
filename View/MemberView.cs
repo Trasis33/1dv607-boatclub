@@ -13,8 +13,8 @@ namespace _1dv607_boatclub
         }
         public MemberModel getNewMemberCredentials ()
         {
-            string name; // new user name
-            string IDNumber; // new user personal number
+            string name; // new member name
+            string IDNumber; // new member personal number
 
             Console.WriteLine ("Enter your name:\n");
             name = Console.ReadLine ();
@@ -77,19 +77,96 @@ namespace _1dv607_boatclub
             return number;
         }
 
-        public void showMembersList (List<MemberModel> users)
+        public void showMembersList (List<MemberModel> members)
         {
-            foreach (MemberModel username in users)
+            foreach (MemberModel member in members)
             {
-                if (username.hasBoat ())
+                if (member.hasBoat ())
                 {
-                    Console.WriteLine (username.ToString ("V"));
+                    Console.WriteLine (member.ToString ("V"));
+                    Console.WriteLine ("\n");
                 }
                 else
                 {
-                    Console.WriteLine (username.ToString ("U"));
+                    Console.WriteLine (member.ToString ("U"));
+                    Console.WriteLine ("\n");
                 }
             }
+        }
+
+        public string memberToEditByID ()
+        {
+            System.Console.WriteLine ("What user do you wish to edit? Type ID\n");
+            string member = Console.ReadLine ();
+            return member;
+        }
+
+        public bool confirmMemberToEdit (MemberModel member)
+        {
+            bool userconfirmed = false;
+            string inputString = "";
+            System.Console.WriteLine (member.ToString ("U"));
+
+            System.Console.WriteLine ("Is this the member you would like to edit? y/n \n");
+
+            while (!userconfirmed)
+            {
+                inputString = Console.ReadLine ();
+
+                if (inputString.ToLower () == "yes" || inputString.ToLower () == "y")
+                {
+                    userconfirmed = true;
+                    return true;
+                }
+                else
+                {
+                    userconfirmed = true;
+                }
+            }
+            return false;
+        }
+
+        public MemberModel memberToEdit (MemberModel member)
+        {
+            MemberModel oldMember = member;
+
+            string newMemberName;
+            string newPersonalNumber;
+            // BoatModel newBoat;
+
+            Console.WriteLine ("Press Enter to keep old user name or enter a new name\n");
+            newMemberName = Console.ReadLine ();
+
+            if (newMemberName == "")
+            {
+                newMemberName = oldMember.UserName;
+            }
+
+            Console.WriteLine ("Press Enter to keep old peronal number or enter a number:\n");
+            newPersonalNumber = Console.ReadLine ();
+
+            if (newPersonalNumber == "")
+            {
+                newPersonalNumber = oldMember.PersonalNumber;
+            }
+
+            // Console.WriteLine ("Do you want to add a boat? Yes/No");
+
+            // string inputString = Console.ReadLine ();
+
+            // if (inputString.ToLower () == "yes" || inputString.ToLower () == "y")
+            // {
+            //     BoatModel boat = addBoat ();
+            //     _member = new MemberModel (name, IDNumber, boat);
+            // }
+            // else
+            // {
+            //     _member = new MemberModel (name, IDNumber);
+            // }
+            oldMember.UserName = newMemberName;
+            oldMember.PersonalNumber = newPersonalNumber;
+
+            return oldMember;
         }
     }
 }

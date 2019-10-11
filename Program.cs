@@ -6,7 +6,7 @@ namespace _1dv607_boatclub
     {
         static void Main (string[] args)
         {
-            var application = new Application ();
+            var application = new MainController ();
             application.run ();
         }
     }

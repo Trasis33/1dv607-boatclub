@@ -100,7 +100,19 @@ namespace _1dv607_boatclub
         public void deleteMember (string memberID)
         {
             Members.Remove (Members.Find (u => u.ID == memberID));
-            saveToFile (Members);
+            saveToFile(Members);
+        }
+
+        public MemberModel getMemberByID(string memberID)
+        {
+            return Members.Find (u => u.ID == memberID);
+        }
+
+        public void saveEditedUser(MemberModel member)
+        {
+            deleteMember(member.ID);
+            Members.Add(member);
+            saveToFile(Members);
         }
 
         public List<MemberModel> Members

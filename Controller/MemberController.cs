@@ -33,11 +33,37 @@ namespace _1dv607_boatclub
 
         public void editUserInformation ()
         {
-            // MemberModel member = _memberView.memberToEdit();
-            // member = _memberModel.retriveMemberToEdit();
-            // MemberModel editedMember = _memberView.showEditMemberMenu(member);
-            // _storage.saveUser(editedMember);
-            Console.WriteLine ("DU är i edit usermenyn");
+            bool success = false;
+            string memberID = _memberView.memberToEditByID();
+            try
+            {
+                MemberModel member = _storage.getMemberByID(memberID);
+                bool correctMember = _memberView.confirmMemberToEdit(member);
+
+                if (correctMember)
+                {
+                    MemberModel editedMember = _memberView.memberToEdit(member);
+                    _storage.saveEditedUser(editedMember);
+                } else
+                {
+                    editUserInformation();
+                }
+
+                if (member != null) {
+                    success = true;
+                }
+
+                if (!success) {
+                    throw new ArgumentException();
+                } else 
+                {
+                    System.Console.WriteLine(member);
+                }
+
+            } catch (Exception)
+            {
+                System.Console.WriteLine("Something went wrong when getting the user");
+            }
         }
 
     }

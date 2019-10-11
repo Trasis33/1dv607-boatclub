@@ -77,6 +77,7 @@ namespace _1dv607_boatclub
         public BoatModel Boat
         {
             get => _boat;
+            set => _boat = value;
         }
 
         public bool hasBoat ()
@@ -106,11 +107,13 @@ namespace _1dv607_boatclub
             switch (format)
             {
                 case "C":
-                    return string.Format ("{0} {1} {3} {2}", UserName, _boat.BoatLength, _boat.Type);
+                    // return string.Format ("Member ID: {0} \nMember: {1} \nBoat type: {2} \nBoat lengh: {3}", ID, UserName);
+                    return string.Format ("Member ID: {0} \nMember: {1} \nBoat type: {2} \nBoat lengh: {3}", ID, UserName, Boat.Type, Boat.BoatLength);
                 case "V":
-                    return string.Format ("{0} {1} {3} {2}", UserName, PersonalNumber, _boat.BoatLength, _boat.Type);
+                    // return string.Format ("Member ID: {0} \nMember: {1} \nPersonal number: {3}", ID, UserName, PersonalNumber);
+                    return string.Format ("Member ID: {0} \nMember: {1} \nPersonal number: {3} \nBoat type: {2} \nBoat length: {4}", ID, UserName, PersonalNumber, Boat.Type, Boat.BoatLength);
                 case "U":
-                    return string.Format ("{0} {1}", UserName, PersonalNumber);
+                    return string.Format ("Member ID: {0} \nMember: {1} \nPersonal number {2}", ID, UserName, PersonalNumber);
                 default:
                     string msg = string.Format ("'{0}' is an invalid format string.", format);
                     throw new ArgumentException (msg);
