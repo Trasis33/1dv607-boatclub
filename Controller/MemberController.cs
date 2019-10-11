@@ -25,6 +25,17 @@ namespace _1dv607_boatclub
             _storage.deleteMember (memberID);
         }
 
+        public void addBoat ()
+        {
+            string member = _memberView.memberToEditByID ();
+            MemberModel memberToEdit = _storage.getMemberByID (member);
+
+            BoatModel boat = _memberView.addBoat ();
+
+            MemberModel updatedMember = _memberModel.addBoatToExistingMember (memberToEdit, boat);
+            _storage.saveEditedUser (updatedMember);
+        }
+
         public void showMembersList ()
         {
             var users = _storage.retrieveMembersList ();
@@ -34,35 +45,40 @@ namespace _1dv607_boatclub
         public void editUserInformation ()
         {
             bool success = false;
-            string memberID = _memberView.memberToEditByID();
+            string memberID = _memberView.memberToEditByID ();
             try
             {
-                MemberModel member = _storage.getMemberByID(memberID);
-                bool correctMember = _memberView.confirmMemberToEdit(member);
+                MemberModel member = _storage.getMemberByID (memberID);
+                bool correctMember = _memberView.confirmMemberToEdit (member);
 
                 if (correctMember)
                 {
-                    MemberModel editedMember = _memberView.memberToEdit(member);
-                    _storage.saveEditedUser(editedMember);
-                } else
+                    MemberModel editedMember = _memberView.memberToEdit (member);
+                    _storage.saveEditedUser (editedMember);
+                }
+                else
                 {
-                    editUserInformation();
+                    editUserInformation ();
                 }
 
-                if (member != null) {
+                if (member != null)
+                {
                     success = true;
                 }
 
-                if (!success) {
-                    throw new ArgumentException();
-                } else 
+                if (!success)
                 {
-                    System.Console.WriteLine(member);
+                    throw new ArgumentException ();
+                }
+                else
+                {
+                    System.Console.WriteLine (member);
                 }
 
-            } catch (Exception)
+            }
+            catch (Exception)
             {
-                System.Console.WriteLine("Something went wrong when getting the user");
+                System.Console.WriteLine ("Something went wrong when getting the user");
             }
         }
 

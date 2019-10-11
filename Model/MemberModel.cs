@@ -11,7 +11,7 @@ namespace _1dv607_boatclub
         private string _userName;
         private string _personalNumber;
         private string _ID;
-        private BoatModel _boat;
+        private List<BoatModel> _boat = new List<BoatModel> ();
         Regex rx = new Regex ("^[0-9]+$");
 
         public MemberModel ()
@@ -29,7 +29,14 @@ namespace _1dv607_boatclub
             ID = "";
             UserName = name;
             PersonalNumber = personalNumber;
-            _boat = boat;
+            _boat.Add (boat);
+        }
+
+        public MemberModel addBoatToExistingMember (MemberModel member, BoatModel boat)
+        {
+            member.Boat.Add (boat);
+            return member;
+
         }
 
         public string UserName
@@ -74,7 +81,7 @@ namespace _1dv607_boatclub
             }
         }
 
-        public BoatModel Boat
+        public List<BoatModel> Boat
         {
             get => _boat;
             set => _boat = value;
@@ -108,10 +115,10 @@ namespace _1dv607_boatclub
             {
                 case "C":
                     // return string.Format ("Member ID: {0} \nMember: {1} \nBoat type: {2} \nBoat lengh: {3}", ID, UserName);
-                    return string.Format ("Member ID: {0} \nMember: {1} \nBoat type: {2} \nBoat lengh: {3}", ID, UserName, Boat.Type, Boat.BoatLength);
+                    return string.Format ("Member ID: {0} \nMember: {1} \nBoat type: \nBoat lengh:", ID, UserName);
                 case "V":
                     // return string.Format ("Member ID: {0} \nMember: {1} \nPersonal number: {3}", ID, UserName, PersonalNumber);
-                    return string.Format ("Member ID: {0} \nMember: {1} \nPersonal number: {3} \nBoat type: {2} \nBoat length: {4}", ID, UserName, PersonalNumber, Boat.Type, Boat.BoatLength);
+                    return string.Format ("Member ID: {0} \nMember: {1} \nPersonal number: {3} \nBoat type: \nBoat length:", ID, UserName, PersonalNumber);
                 case "U":
                     return string.Format ("Member ID: {0} \nMember: {1} \nPersonal number {2}", ID, UserName, PersonalNumber);
                 default:

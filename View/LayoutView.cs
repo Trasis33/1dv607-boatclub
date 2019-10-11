@@ -10,7 +10,7 @@ namespace _1dv607_boatclub
         public void menuOptions ()
         {
             SharedView.printSectionSeparationLine ();
-            Console.WriteLine ("1: Add member\n2: Display members\n3: Delete member\n4: Edit Member\n5: Exit");
+            Console.WriteLine ("1: Add member\n2: Display members\n3: Delete member\n4: Edit Member\n5: Add boat\n6: Exit");
             SharedView.printSectionSeparationLine ();
         }
 

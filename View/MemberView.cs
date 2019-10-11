@@ -38,7 +38,7 @@ namespace _1dv607_boatclub
             return _member;
         }
 
-        private BoatModel addBoat ()
+        public BoatModel addBoat ()
         {
             int value;
             int boatTypeValue = 0;
@@ -163,6 +163,7 @@ namespace _1dv607_boatclub
             // {
             //     _member = new MemberModel (name, IDNumber);
             // }
+
             oldMember.UserName = newMemberName;
             oldMember.PersonalNumber = newPersonalNumber;
 

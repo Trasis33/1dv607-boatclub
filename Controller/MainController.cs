@@ -35,7 +35,7 @@ namespace _1dv607_boatclub
 
                     value = int.Parse (Console.ReadLine ());
 
-                    if (value <= 0 || value >= 6)
+                    if (value <= 0 || value >= 7)
                     {
                         throw new ArgumentOutOfRangeException ();
                     }
@@ -55,6 +55,9 @@ namespace _1dv607_boatclub
                             _memberController.editUserInformation ();
                             break;
                         case 5:
+                            _memberController.addBoat ();
+                            break;
+                        case 6:
                             isProgramRunning = false;
                             break;
                     }
