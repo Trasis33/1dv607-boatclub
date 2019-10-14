@@ -119,7 +119,7 @@ namespace _1dv607_boatclub
 
         public void updateMember (MemberModel member)
         {
-            deleteMember (member);
+            deleteMember (getMemberByID (member.ID));
             Members.Add (member);
             // Members[Members.FindIndex (i => i.Equals (member))] = member;
             saveToFile (Members);

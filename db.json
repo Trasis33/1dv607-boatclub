@@ -3,18 +3,6 @@
     "UserName": "qwe",
     "PersonalNumber": "111",
     "ID": "1",
-    "Boat": [
-      {
-        "BoatLength": 12.0,
-        "Type": 1,
-        "ID": ""
-      }
-    ]
-  },
-  {
-    "UserName": "qwe",
-    "PersonalNumber": "111",
-    "ID": "1",
     "Boat": []
   }
 ]
