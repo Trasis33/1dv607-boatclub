@@ -56,10 +56,10 @@ namespace _1dv607_boatclub
             {
                 _memberController.showCompactList ();
             }
-            // if (consoleView.wantsToShowVerboseList ())
-            // {
-            //     _memberController.showVerboseList ();
-            // }
+            if (consoleView.wantsToShowVerboseList ())
+            {
+                _memberController.showVerboseList ();
+            }
             if (consoleView.wantsToExit ())
             {
                 return false;

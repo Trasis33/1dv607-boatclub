@@ -6,10 +6,7 @@ namespace _1dv607_boatclub
 {
     class MemberView : SharedView
     {
-        public MemberView ()
-        {
-
-        }
+        public MemberView () {}
 
         public string getMemberName ()
         {
@@ -29,13 +26,6 @@ namespace _1dv607_boatclub
             return getInput ();
         }
 
-        public void displayMember (MemberModel member)
-        {
-            printSectionSeparationLine ();
-            printCustomMessage ("ID: " + member.ID + ", Name: " + member.UserName + ", Personal number: " + member.PersonalNumber);
-            printSectionSeparationLine ();
-        }
-
         public string memberToDeleteById ()
         {
             string member;
@@ -44,40 +34,7 @@ namespace _1dv607_boatclub
             member = Console.ReadLine ();
             return member;
         }
-
-        public void showMembersList (List<MemberModel> members)
-        {
-            foreach (MemberModel member in members)
-            {
-                if (member.hasBoat ())
-                {
-                    Console.WriteLine (member.ToString ("V"));
-                    Console.WriteLine ("\n");
-                }
-                else
-                {
-                    Console.WriteLine (member.ToString ("U"));
-                    Console.WriteLine ("\n");
-                }
-            }
-        }
-        public void showCompactMemberList (List<MemberModel> members)
-        {
-            foreach (MemberModel member in members)
-            {
-                printCustomMessage ("ID: " + member.ID + ", Name: " + member.UserName + ", Number of boats: " + member.Boat.Count);
-            }
-        }
-
-        public void showVerboseMemberList (List<MemberModel> members)
-        {
-            foreach (MemberModel member in members)
-            {
-                printCustomMessage ("ID: " + member.ID + ", Name: " + member.UserName +
-                    ", Personal number: " + member.PersonalNumber + ", Number of boats: " + member.Boat.Count);
-            }
-        }
-
+        
         public string memberToEditByID ()
         {
             System.Console.WriteLine ("What user do you wish to edit? Type ID\n");
@@ -89,7 +46,7 @@ namespace _1dv607_boatclub
         {
             bool userconfirmed = false;
             string inputString = "";
-            System.Console.WriteLine (member.ToString ("U"));
+            System.Console.WriteLine (member.UserName);
 
             System.Console.WriteLine ("Is this the member you would like to edit? y/n \n");
 
@@ -116,7 +73,6 @@ namespace _1dv607_boatclub
 
             string newMemberName;
             string newPersonalNumber;
-            // BoatModel newBoat;
 
             Console.WriteLine ("Press Enter to keep old user name or enter a new name\n");
             newMemberName = Console.ReadLine ();
@@ -138,6 +94,42 @@ namespace _1dv607_boatclub
             oldMember.PersonalNumber = newPersonalNumber;
 
             return oldMember;
+        }
+
+        public void displayMember (MemberModel member)
+        {
+            printSectionSeparationLine ();
+            printCustomMessage ("ID: " + member.ID + ", Name: " + member.UserName + ", Personal number: " + member.PersonalNumber);
+            printSectionSeparationLine ();
+        }
+        public void showCompactMemberList (List<MemberModel> members)
+        {
+            foreach (MemberModel member in members)
+            {
+                printCustomMessage ("ID: " + member.ID + ", Name: " + member.UserName + ", Number of boats: " + member.Boat.Count);
+            }
+        }
+
+        public void showVerboseMemberList (List<MemberModel> members)
+        {
+            foreach (MemberModel member in members)
+            {
+                printCustomMessage ("Name: " + member.UserName + "\nPersonal number: " + member.PersonalNumber +
+                "\nID: " + member.ID + "\n" + getVerboseBoatList(member.Boat));
+            }
+        }
+
+        public string getVerboseBoatList (List<BoatModel> boats)
+        {
+            string boatInformation = "";
+
+            for (var i = 0; i < boats.Count(); i ++)
+            {
+                boatInformation += "\nBoat: " + (i + 1) + "\n  Boat type: " + boats[i].Type + "\n" + "  Boat lenght: " + 
+                boats[i].BoatLength + "\n";
+            }
+
+            return boatInformation;
         }
 
     }

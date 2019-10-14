@@ -19,12 +19,6 @@ namespace _1dv607_boatclub
             _storage.saveNewUserToStorage (member);
             _memberView.displayMember (member);
         }
-
-        // public void deleteMember ()
-        // {
-        //     string memberID = _memberView.memberToDeleteById ();
-        //     _storage.deleteMember (memberID);
-        // }
         public void displayMemberByID ()
         {
             MemberModel member = _storage.getMemberByID (_memberView.getID ());
@@ -48,19 +42,11 @@ namespace _1dv607_boatclub
             return member;
         }
 
-        // public void showMembersList ()
-        // {
-        //     var users = _storage.retrieveMembersList ();
-        //     _memberView.showMembersList (users);
-        // }
-
         public void editUserInformation (MemberModel member)
         {
             bool success = false;
-            // string memberID = _memberView.memberToEditByID ();
             try
             {
-                // MemberModel member = _storage.getMemberByID (memberID);
                 bool correctMember = _memberView.confirmMemberToEdit (member);
 
                 if (correctMember)
@@ -84,7 +70,7 @@ namespace _1dv607_boatclub
                 }
                 else
                 {
-                    System.Console.WriteLine (member);
+                    System.Console.WriteLine ("Membername: " + member.UserName + "\nPersonal number: " + member.PersonalNumber);
                 }
 
             }
@@ -96,6 +82,11 @@ namespace _1dv607_boatclub
         public void showCompactList ()
         {
             _memberView.showCompactMemberList (_storage.Members);
+        }
+
+        public void showVerboseList ()
+        {
+            _memberView.showVerboseMemberList (_storage.Members);
         }
     }
 

@@ -6,10 +6,8 @@ namespace _1dv607_boatclub
     {
         private BoatTypes _type;
         private double _boatLength;
-        // private string _ID;
         public BoatModel (BoatTypes types, double length)
         {
-            // _ID = ID;
             _type = types;
             _boatLength = length;
         }

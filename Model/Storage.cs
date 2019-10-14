@@ -68,14 +68,6 @@ namespace _1dv607_boatclub
             }
         }
 
-        public string getNewMemberID ()
-        {
-            int currentID = int.Parse (getMemberID ());
-            int newID = currentID + 1;
-            setNewMemberID (newID.ToString ());
-            return newID.ToString ();
-        }
-
         private void setNewMemberID (string newMemberID)
         {
             StreamWriter writer = null;
@@ -108,7 +100,6 @@ namespace _1dv607_boatclub
         public void deleteMember (MemberModel member)
         {
             Members.Remove (member);
-            // Members.Remove (Members[Members.FindIndex (i => i.Equals (member))] = member);
             saveToFile (Members);
         }
 
@@ -121,7 +112,6 @@ namespace _1dv607_boatclub
         {
             deleteMember (getMemberByID (member.ID));
             Members.Add (member);
-            // Members[Members.FindIndex (i => i.Equals (member))] = member;
             saveToFile (Members);
         }
 
