@@ -6,24 +6,75 @@ namespace _1dv607_boatclub
 {
     class MemberView : SharedView
     {
-        public MemberView () {}
+        const int MIN_NAME_LENGTH = 3;
+        const int MIN_PERSONAL_NUMBER_LENGTH = 10;
+        const int MAX_PERSONAL_NUMBER_LENGTH = 12;
+        public MemberView () { }
 
         public string getMemberName ()
         {
-            printCustomMessage ("Enter your name:\n");
-            return getInput ();
+            string name;
+
+            while (true)
+            {
+                printCustomMessage ("Enter your name:\n");
+                name = getInput ();
+
+                if (name.Length >= MIN_NAME_LENGTH && containsOnlyLetters (name))
+                {
+                    return name;
+                }
+                else
+                {
+                    printCustomMessage ("Name must be more than 3 characters and not contain any numbers\n");
+                }
+            }
         }
 
         public string getPersonalNumber ()
         {
-            printCustomMessage ("Enter your personal number:\n");
-            return getInput ();
+            string personalNumber;
+
+            while (true)
+            {
+                printCustomMessage ("Enter your personal number:\n");
+                personalNumber = getInput ();
+
+                if (personalNumber.Length >= MIN_PERSONAL_NUMBER_LENGTH && personalNumber.Length <= MAX_PERSONAL_NUMBER_LENGTH)
+                {
+                    if (containsOnlyNumbers (personalNumber))
+                    {
+                        return personalNumber;
+                    }
+                    else
+                    {
+                        printCustomMessage ("Your personal number must only contain numbers");
+                    }
+                }
+                else
+                {
+                    printCustomMessage ("Your personal number must contain between 10 and 12 numbers");
+                }
+            }
         }
 
         public string getID ()
         {
-            printCustomMessage ("Enter ID: ");
-            return getInput ();
+
+            while (true)
+            {
+                printCustomMessage ("Enter ID: ");
+                string ID = getInput ();
+
+                if (containsOnlyNumbers (ID))
+                {
+                    return ID;
+                }
+                else
+                {
+                    printCustomMessage ("ID must contain only numbers");
+                }
+            }
         }
 
         public string memberToDeleteById ()
@@ -31,14 +82,14 @@ namespace _1dv607_boatclub
             string member;
 
             System.Console.WriteLine ("What user do you wish to delete? Type ID\n");
-            member = Console.ReadLine ();
+            member = getInput ();
             return member;
         }
-        
+
         public string memberToEditByID ()
         {
             System.Console.WriteLine ("What user do you wish to edit? Type ID\n");
-            string member = Console.ReadLine ();
+            string member = getInput ();
             return member;
         }
 
@@ -52,7 +103,7 @@ namespace _1dv607_boatclub
 
             while (!userconfirmed)
             {
-                inputString = Console.ReadLine ();
+                inputString = getInput ();
 
                 if (inputString.ToLower () == "yes" || inputString.ToLower () == "y")
                 {
@@ -75,7 +126,7 @@ namespace _1dv607_boatclub
             string newPersonalNumber;
 
             Console.WriteLine ("Press Enter to keep old user name or enter a new name\n");
-            newMemberName = Console.ReadLine ();
+            newMemberName = getInput ();
 
             if (newMemberName == "")
             {
@@ -83,7 +134,7 @@ namespace _1dv607_boatclub
             }
 
             Console.WriteLine ("Press Enter to keep old peronal number or enter a number:\n");
-            newPersonalNumber = Console.ReadLine ();
+            newPersonalNumber = getInput ();
 
             if (newPersonalNumber == "")
             {
@@ -96,6 +147,22 @@ namespace _1dv607_boatclub
             return oldMember;
         }
 
+        public bool containsOnlyNumbers (string input)
+        {
+            if (input.Any (char.IsLetter))
+            {
+                return false;
+            }
+            return true;
+        }
+        public bool containsOnlyLetters (string input)
+        {
+            if (input.Any (char.IsDigit))
+            {
+                return false;
+            }
+            return true;
+        }
         public void displayMember (MemberModel member)
         {
             printSectionSeparationLine ();
@@ -115,7 +182,7 @@ namespace _1dv607_boatclub
             foreach (MemberModel member in members)
             {
                 printCustomMessage ("Name: " + member.UserName + "\nPersonal number: " + member.PersonalNumber +
-                "\nID: " + member.ID + "\n" + getVerboseBoatList(member.Boat));
+                    "\nID: " + member.ID + "\n" + getVerboseBoatList (member.Boat));
             }
         }
 
@@ -123,10 +190,10 @@ namespace _1dv607_boatclub
         {
             string boatInformation = "";
 
-            for (var i = 0; i < boats.Count(); i ++)
+            for (var i = 0; i < boats.Count (); i++)
             {
-                boatInformation += "\nBoat: " + (i + 1) + "\n  Boat type: " + boats[i].Type + "\n" + "  Boat lenght: " + 
-                boats[i].BoatLength + "\n";
+                boatInformation += "\nBoat: " + (i + 1) + "\n  Boat type: " + boats[i].Type + "\n" + "  Boat lenght: " +
+                    boats[i].BoatLength + "\n";
             }
 
             return boatInformation;

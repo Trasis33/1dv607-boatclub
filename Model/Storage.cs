@@ -105,7 +105,12 @@ namespace _1dv607_boatclub
 
         public MemberModel getMemberByID (string memberID)
         {
-            return Members.Find (u => u.ID == memberID);
+            MemberModel member = Members.Find (u => u.ID == memberID);
+            if (member == null)
+            {
+                throw new ArgumentNullException ();
+            }
+            return member;
         }
 
         public void updateMember (MemberModel member)

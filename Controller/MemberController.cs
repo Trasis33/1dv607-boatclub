@@ -21,27 +21,42 @@ namespace _1dv607_boatclub
         }
         public void displayMemberByID ()
         {
-            MemberModel member = _storage.getMemberByID (_memberView.getID ());
+            MemberModel member = checkIfMemberExists ();
             _memberView.displayMember (member);
+
         }
+
         public void editMemberByID ()
         {
-            MemberModel member = _storage.getMemberByID (_memberView.memberToEditByID ());
+            MemberModel member = checkIfMemberExists ();
             editUserInformation (member);
         }
         public void deleteMemberByID ()
         {
-            MemberModel member = _storage.getMemberByID (_memberView.memberToDeleteById ());
+            MemberModel member = checkIfMemberExists ();
             _storage.deleteMember (member);
         }
 
         public MemberModel getMemberByID ()
         {
-            MemberModel member = _storage.getMemberByID (_memberView.getID ());
-
+            MemberModel member = checkIfMemberExists ();
             return member;
         }
-
+        public MemberModel checkIfMemberExists ()
+        {
+            while (true)
+            {
+                try
+                {
+                    MemberModel member = _storage.getMemberByID (_memberView.getID ());
+                    return member;
+                }
+                catch (ArgumentNullException)
+                {
+                    Console.WriteLine ("No member found");
+                }
+            }
+        }
         public void editUserInformation (MemberModel member)
         {
             bool success = false;
