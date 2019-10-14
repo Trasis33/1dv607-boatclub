@@ -6,8 +6,10 @@ namespace _1dv607_boatclub
     {
         static void Main (string[] args)
         {
-            var application = new MainController ();
-            application.run ();
+            ConsoleView consoleView = new ConsoleView ();
+            ConsoleController consoleController = new ConsoleController ();
+
+            while (consoleController.run (consoleView));
         }
     }
 }

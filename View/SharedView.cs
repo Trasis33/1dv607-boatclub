@@ -10,5 +10,20 @@ namespace _1dv607_boatclub
             Console.WriteLine ("--------------------------------");
             Console.WriteLine ("");
         }
+
+        public static void printCustomMessage (string message)
+        {
+            Console.WriteLine (message);
+        }
+
+        public static int getMenuInput ()
+        {
+            return int.Parse (Console.ReadLine ());
+        }
+
+        public static string getInput ()
+        {
+            return Console.ReadLine ();
+        }
     }
 }

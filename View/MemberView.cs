@@ -4,77 +4,45 @@ using System.Linq;
 
 namespace _1dv607_boatclub
 {
-    class MemberView
+    class MemberView : SharedView
     {
-        private MemberModel _member;
-        public MemberView (MemberModel memberModel)
+        public MemberView ()
         {
-            _member = memberModel;
-        }
-        public MemberModel getNewMemberCredentials ()
-        {
-            string name; // new member name
-            string IDNumber; // new member personal number
 
-            Console.WriteLine ("Enter your name:\n");
-            name = Console.ReadLine ();
-
-            Console.WriteLine ("Enter your personal ID number:\n");
-            IDNumber = Console.ReadLine ();
-
-            Console.WriteLine ("Do you want to add a boat? Yes/No");
-
-            string inputString = Console.ReadLine ();
-
-            if (inputString.ToLower () == "yes" || inputString.ToLower () == "y")
-            {
-                BoatModel boat = addBoat ();
-                _member = new MemberModel (name, IDNumber, boat);
-            }
-            else
-            {
-                _member = new MemberModel (name, IDNumber);
-            }
-            return _member;
         }
 
-        public BoatModel addBoat ()
+        public string getMemberName ()
         {
-            int value;
-            int boatTypeValue = 0;
-            double length;
-            bool hasBoatBeenSelected = false;
+            printCustomMessage ("Enter your name:\n");
+            return getInput ();
+        }
 
-            while (!hasBoatBeenSelected)
-            {
-                Console.WriteLine ("\n1: Sailboat\n2: Motorsailer\n3: Kayak\n4: Canoe\n5: Other");
-                value = int.Parse (Console.ReadLine ());
+        public string getPersonalNumber ()
+        {
+            printCustomMessage ("Enter your personal number:\n");
+            return getInput ();
+        }
 
-                if (!Enum.IsDefined (typeof (BoatTypes), value))
-                {
-                    Console.WriteLine ("Not a valid type");
-                }
-                else
-                {
-                    hasBoatBeenSelected = true;
-                }
+        public string getID ()
+        {
+            printCustomMessage ("Enter ID: ");
+            return getInput ();
+        }
 
-                boatTypeValue = value;
-            }
-
-            Console.WriteLine ("Input the length of the boat\n");
-            length = double.Parse (Console.ReadLine ());
-
-            return new BoatModel ((BoatTypes) boatTypeValue, length);
+        public void displayMember (MemberModel member)
+        {
+            printSectionSeparationLine ();
+            printCustomMessage ("ID: " + member.ID + ", Name: " + member.UserName + ", Personal number: " + member.PersonalNumber);
+            printSectionSeparationLine ();
         }
 
         public string memberToDeleteById ()
         {
-            string number;
+            string member;
 
             System.Console.WriteLine ("What user do you wish to delete? Type ID\n");
-            number = Console.ReadLine ();
-            return number;
+            member = Console.ReadLine ();
+            return member;
         }
 
         public void showMembersList (List<MemberModel> members)
@@ -91,6 +59,22 @@ namespace _1dv607_boatclub
                     Console.WriteLine (member.ToString ("U"));
                     Console.WriteLine ("\n");
                 }
+            }
+        }
+        public void showCompactMemberList (List<MemberModel> members)
+        {
+            foreach (MemberModel member in members)
+            {
+                printCustomMessage ("ID: " + member.ID + ", Name: " + member.UserName + ", Number of boats: " + member.Boat.Count);
+            }
+        }
+
+        public void showVerboseMemberList (List<MemberModel> members)
+        {
+            foreach (MemberModel member in members)
+            {
+                printCustomMessage ("ID: " + member.ID + ", Name: " + member.UserName +
+                    ", Personal number: " + member.PersonalNumber + ", Number of boats: " + member.Boat.Count);
             }
         }
 
@@ -150,24 +134,11 @@ namespace _1dv607_boatclub
                 newPersonalNumber = oldMember.PersonalNumber;
             }
 
-            // Console.WriteLine ("Do you want to add a boat? Yes/No");
-
-            // string inputString = Console.ReadLine ();
-
-            // if (inputString.ToLower () == "yes" || inputString.ToLower () == "y")
-            // {
-            //     BoatModel boat = addBoat ();
-            //     _member = new MemberModel (name, IDNumber, boat);
-            // }
-            // else
-            // {
-            //     _member = new MemberModel (name, IDNumber);
-            // }
-
             oldMember.UserName = newMemberName;
             oldMember.PersonalNumber = newPersonalNumber;
 
             return oldMember;
         }
+
     }
 }

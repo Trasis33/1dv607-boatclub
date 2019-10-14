@@ -32,11 +32,23 @@ namespace _1dv607_boatclub
             _boat.Add (boat);
         }
 
-        public MemberModel addBoatToExistingMember (MemberModel member, BoatModel boat)
+        public void addBoatToExistingMember (MemberModel member, BoatModel boat)
         {
             member.Boat.Add (boat);
-            return member;
+            // return member;
 
+        }
+
+        public void removeBoatFromExistingMember (MemberModel member, int index)
+        {
+            // which boat do you want to remove
+            // ta emot value
+
+        }
+
+        public string getID ()
+        {
+            return ID;
         }
 
         public string UserName
@@ -97,6 +109,19 @@ namespace _1dv607_boatclub
             {
                 return false;
             }
+        }
+
+        public void addBoat (BoatModel boat)
+        {
+            _boat.Add (boat);
+        }
+        public BoatModel GetBoat (int boat)
+        {
+            return Boat[boat];
+        }
+        public void deleteBoat (BoatModel boat)
+        {
+            _boat.Remove (boat);
         }
 
         public override string ToString ()

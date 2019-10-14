@@ -1,54 +1,66 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace _1dv607_boatclub
 {
     class MemberController
     {
         private MemberView _memberView;
-        private MemberModel _memberModel;
         private Storage _storage;
         public MemberController ()
         {
             _storage = new Storage ();
-            _memberModel = new MemberModel ();
-            _memberView = new MemberView (_memberModel);
+            _memberView = new MemberView ();
         }
         public void addMember ()
         {
-            MemberModel user = _memberView.getNewMemberCredentials ();
-            _storage.saveNewUserToStorage (user);
+            MemberModel member = new MemberModel (_memberView.getMemberName (), _memberView.getPersonalNumber ());
+            _storage.saveNewUserToStorage (member);
+            _memberView.displayMember (member);
         }
 
-        public void deleteMember ()
+        // public void deleteMember ()
+        // {
+        //     string memberID = _memberView.memberToDeleteById ();
+        //     _storage.deleteMember (memberID);
+        // }
+        public void displayMemberByID ()
         {
-            string memberID = _memberView.memberToDeleteById ();
-            _storage.deleteMember (memberID);
+            MemberModel member = _storage.getMemberByID (_memberView.getID ());
+            _memberView.displayMember (member);
         }
-
-        public void addBoat ()
+        public void editMemberByID ()
         {
-            string member = _memberView.memberToEditByID ();
-            MemberModel memberToEdit = _storage.getMemberByID (member);
-
-            BoatModel boat = _memberView.addBoat ();
-
-            MemberModel updatedMember = _memberModel.addBoatToExistingMember (memberToEdit, boat);
-            _storage.saveEditedUser (updatedMember);
+            MemberModel member = _storage.getMemberByID (_memberView.memberToEditByID ());
+            editUserInformation (member);
         }
-
-        public void showMembersList ()
+        public void deleteMemberByID ()
         {
-            var users = _storage.retrieveMembersList ();
-            _memberView.showMembersList (users);
+            MemberModel member = _storage.getMemberByID (_memberView.memberToDeleteById ());
+            _storage.deleteMember (member);
         }
 
-        public void editUserInformation ()
+        public MemberModel getMemberByID ()
+        {
+            MemberModel member = _storage.getMemberByID (_memberView.getID ());
+
+            return member;
+        }
+
+        // public void showMembersList ()
+        // {
+        //     var users = _storage.retrieveMembersList ();
+        //     _memberView.showMembersList (users);
+        // }
+
+        public void editUserInformation (MemberModel member)
         {
             bool success = false;
-            string memberID = _memberView.memberToEditByID ();
+            // string memberID = _memberView.memberToEditByID ();
             try
             {
-                MemberModel member = _storage.getMemberByID (memberID);
+                // MemberModel member = _storage.getMemberByID (memberID);
                 bool correctMember = _memberView.confirmMemberToEdit (member);
 
                 if (correctMember)
@@ -58,7 +70,7 @@ namespace _1dv607_boatclub
                 }
                 else
                 {
-                    editUserInformation ();
+                    editUserInformation (member);
                 }
 
                 if (member != null)
@@ -81,7 +93,10 @@ namespace _1dv607_boatclub
                 System.Console.WriteLine ("Something went wrong when getting the user");
             }
         }
-
+        public void showCompactList ()
+        {
+            _memberView.showCompactMemberList (_storage.Members);
+        }
     }
 
 }

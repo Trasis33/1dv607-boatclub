@@ -1,28 +1,20 @@
 [
   {
     "UserName": "qwe",
-    "PersonalNumber": "123",
+    "PersonalNumber": "111",
     "ID": "1",
     "Boat": [
       {
         "BoatLength": 12.0,
-        "Type": 1
-      },
-      {
-        "BoatLength": 14.0,
-        "Type": 2
+        "Type": 1,
+        "ID": ""
       }
     ]
   },
   {
-    "UserName": "asd",
-    "PersonalNumber": "234",
-    "ID": "2",
-    "Boat": [
-      {
-        "BoatLength": 16.0,
-        "Type": 3
-      }
-    ]
+    "UserName": "qwe",
+    "PersonalNumber": "111",
+    "ID": "1",
+    "Boat": []
   }
 ]
