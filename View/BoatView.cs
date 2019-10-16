@@ -6,6 +6,9 @@ namespace _1dv607_boatclub
 {
     class BoatView : SharedView
     {
+        const int DEFAULT_BOAT_VALUE = 0;
+        const int DEFAULT_BOAT_LENGTH = 0;
+        const int RETURN_TO_MENU = -1;
         public BoatView ()
         {
 
@@ -13,7 +16,7 @@ namespace _1dv607_boatclub
         public BoatTypes getBoatType ()
         {
             int value;
-            int boatTypeValue = 0;
+            int boatTypeValue = DEFAULT_BOAT_VALUE;
             bool hasBoatBeenSelected = false;
 
             while (!hasBoatBeenSelected)
@@ -48,7 +51,7 @@ namespace _1dv607_boatclub
             string input = getInput ();
             if (input == "")
             {
-                return 0;
+                return DEFAULT_BOAT_LENGTH;
             }
             length = double.Parse (input);
             return length;
@@ -58,7 +61,7 @@ namespace _1dv607_boatclub
             if (boats.Count == 0)
             {
                 printCustomMessage ("Member has no registered boats, returning to menu");
-                return -1;
+                return RETURN_TO_MENU;
             }
             for (int i = 0; i < boats.Count; i++)
             {
@@ -70,7 +73,7 @@ namespace _1dv607_boatclub
             if (stringInput.Any (char.IsLetter) || stringInput == "")
             {
                 printCustomMessage ("Invalid input, needs to be a number. Returning to menu");
-                return -1;
+                return RETURN_TO_MENU;
             }
             else
             {
@@ -78,7 +81,7 @@ namespace _1dv607_boatclub
                 if (input > boats.Count)
                 {
                     printCustomMessage ("Boat does not exist, returning to menu");
-                    return -1;
+                    return RETURN_TO_MENU;
                 }
                 return input;
             }

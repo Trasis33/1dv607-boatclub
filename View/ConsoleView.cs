@@ -6,7 +6,8 @@ namespace _1dv607_boatclub
 {
     class ConsoleView : SharedView
     {
-        private int input = -1;
+        const int DEFAULT_VALUE = -1;
+        private int input = DEFAULT_VALUE;
         public void displayMenuOptions ()
         {
             printSectionSeparationLine ();
@@ -29,18 +30,21 @@ namespace _1dv607_boatclub
         public void promptForMenuOptionSelection ()
         {
             printCustomMessage ("input menu choice: ");
-            try
+
+            string stringInput = getInput ();
+            if (stringInput == "" || stringInput.Any (char.IsLetter))
             {
-                input = getMenuInput ();
+                return;
             }
-            catch (ArgumentOutOfRangeException)
+            else
             {
-                input = -1;
+                input = int.Parse (stringInput);
             }
         }
         public void pressKeyToContinue ()
         {
             printCustomMessage ("Press Enter key to continue: ");
+            input = DEFAULT_VALUE;
             getInput ();
         }
         public bool wantsToAddMember ()
