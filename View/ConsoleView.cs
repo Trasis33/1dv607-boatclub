@@ -38,13 +38,11 @@ namespace _1dv607_boatclub
                 input = -1;
             }
         }
-
         public void pressKeyToContinue ()
         {
-            printCustomMessage ("Press any key to continue: ");
+            printCustomMessage ("Press Enter key to continue: ");
             getInput ();
         }
-
         public bool wantsToAddMember ()
         {
             return (menuSelections) input == menuSelections.addMember;

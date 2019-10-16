@@ -81,6 +81,13 @@ namespace _1dv607_boatclub
                 printCustomMessage (i + ": Boat type: " + boats[i].Type);
             }
 
+            int input = int.Parse (getInput ());
+
+            if (input > boats.Count)
+            {
+                printCustomMessage ("Boat does not exist");
+
+            }
             return int.Parse (getInput ());
         }
     }

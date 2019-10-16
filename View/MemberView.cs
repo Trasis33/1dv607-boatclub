@@ -60,7 +60,6 @@ namespace _1dv607_boatclub
 
         public string getID ()
         {
-
             while (true)
             {
                 printCustomMessage ("Enter ID: ");
@@ -147,6 +146,12 @@ namespace _1dv607_boatclub
             return oldMember;
         }
 
+        public void displayNotFoundMessage ()
+        {
+            printCustomMessage ("\nMember not found, returning to menu.");
+            printSectionSeparationLine ();
+        }
+
         public bool containsOnlyNumbers (string input)
         {
             if (input.Any (char.IsLetter))
@@ -192,7 +197,7 @@ namespace _1dv607_boatclub
 
             for (var i = 0; i < boats.Count (); i++)
             {
-                boatInformation += "\nBoat: " + (i + 1) + "\n  Boat type: " + boats[i].Type + "\n" + "  Boat lenght: " +
+                boatInformation += "\nBoat: " + (i + 1) + "\n  Boat type: " + boats[i].Type + "\n" + "  Boat length: " +
                     boats[i].BoatLength + "\n";
             }
 
