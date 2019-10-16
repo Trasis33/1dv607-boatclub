@@ -14,12 +14,14 @@ namespace _1dv607_boatclub
         private List<BoatModel> _boats = new List<BoatModel> ();
         Regex rx = new Regex ("^[0-9]+$");
 
+        public MemberModel () { }
         public MemberModel (string name, string personalNumber, string ID = "")
         {
             ID = "";
             UserName = name;
             PersonalNumber = personalNumber;
         }
+
         public string UserName
         {
             get => _userName;
@@ -33,6 +35,7 @@ namespace _1dv607_boatclub
                 _userName = value;
             }
         }
+
         public string PersonalNumber
         {
             get => _personalNumber;
@@ -46,6 +49,7 @@ namespace _1dv607_boatclub
                 _personalNumber = value;
             }
         }
+
         public string ID
         {
             get => _ID;
@@ -59,11 +63,13 @@ namespace _1dv607_boatclub
                 _ID = value;
             }
         }
+
         public List<BoatModel> Boat
         {
             get => _boats;
             set => _boats = value;
         }
+
         public void addBoat (BoatModel boat)
         {
             _boats.Add (boat);

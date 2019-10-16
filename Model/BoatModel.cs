@@ -18,7 +18,7 @@ namespace _1dv607_boatclub
 
             set
             {
-                if (value <= 0)
+                if (value < 0)
                 {
                     throw new ArgumentOutOfRangeException ();
                 }

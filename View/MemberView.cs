@@ -75,29 +75,43 @@ namespace _1dv607_boatclub
                 }
             }
         }
+
+        public string memberToDeleteById ()
+        {
+            string member;
+
+            System.Console.WriteLine ("What user do you wish to delete? Type ID\n");
+            member = getInput ();
+            return member;
+        }
+
+        public string memberToEditByID ()
+        {
+            System.Console.WriteLine ("What user do you wish to edit? Type ID\n");
+            string member = getInput ();
+            return member;
+        }
+
         public bool confirmMemberToEdit (MemberModel member)
         {
-            bool userconfirmed = false;
             string inputString = "";
             System.Console.WriteLine (member.UserName);
 
             System.Console.WriteLine ("Is this the member you would like to edit? y/n \n");
 
-            while (!userconfirmed)
+            while (true)
             {
                 inputString = getInput ();
 
                 if (inputString.ToLower () == "yes" || inputString.ToLower () == "y")
                 {
-                    userconfirmed = true;
                     return true;
                 }
-                else
+                if (inputString.ToLower () == "no" || inputString.ToLower () == "n")
                 {
-                    userconfirmed = true;
+                    return false;
                 }
             }
-            return false;
         }
 
         public MemberModel memberToEdit (MemberModel member)

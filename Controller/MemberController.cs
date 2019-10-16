@@ -70,7 +70,7 @@ namespace _1dv607_boatclub
                 }
                 else
                 {
-                    editUserInformation (member);
+                    return;
                 }
 
                 if (member != null)

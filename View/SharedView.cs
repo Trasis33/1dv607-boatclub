@@ -4,24 +4,24 @@ namespace _1dv607_boatclub
 {
     abstract class SharedView
     {
-        public static void printSectionSeparationLine ()
+        public void printSectionSeparationLine ()
         {
             Console.WriteLine ("");
             Console.WriteLine ("--------------------------------");
             Console.WriteLine ("");
         }
 
-        public static void printCustomMessage (string message)
+        public void printCustomMessage (string message)
         {
             Console.WriteLine (message);
         }
 
-        public static int getMenuInput ()
+        public int getMenuInput ()
         {
             return int.Parse (Console.ReadLine ());
         }
 
-        public static string getInput ()
+        public string getInput ()
         {
             return Console.ReadLine ();
         }
