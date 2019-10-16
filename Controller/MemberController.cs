@@ -16,12 +16,11 @@ namespace _1dv607_boatclub
         public void addMember ()
         {
             MemberModel member = new MemberModel (_memberView.getMemberName (), _memberView.getPersonalNumber ());
-            _storage.saveNewUserToStorage (member);
+            _storage.saveNewMemberToStorage (member);
             _memberView.displayMember (member);
         }
         public void displayMemberByID ()
         {
-            // MemberModel member = checkIfMemberExists ();
             MemberModel member = getMemberByID ();
             if (member == null)
             {

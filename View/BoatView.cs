@@ -10,37 +10,6 @@ namespace _1dv607_boatclub
         {
 
         }
-
-        public void addBoat (BoatModel boat)
-        {
-            int value;
-            int boatTypeValue = 0;
-            double length;
-            bool hasBoatBeenSelected = false;
-
-            while (!hasBoatBeenSelected)
-            {
-                Console.WriteLine ("\n1: Sailboat\n2: Motorsailer\n3: Kayak\n4: Canoe\n5: Other");
-                value = int.Parse (Console.ReadLine ());
-
-                if (!Enum.IsDefined (typeof (BoatTypes), value))
-                {
-                    Console.WriteLine ("Not a valid type");
-                }
-                else
-                {
-                    hasBoatBeenSelected = true;
-                }
-
-                boatTypeValue = value;
-            }
-
-            Console.WriteLine ("Input the length of the boat\n");
-            length = double.Parse (Console.ReadLine ());
-
-            // return new BoatModel ((BoatTypes) boatTypeValue, length);
-        }
-
         public BoatTypes getBoatType ()
         {
             int value;

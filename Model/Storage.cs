@@ -16,7 +16,7 @@ namespace _1dv607_boatclub
         {
             Members = retrieveMembersList ();
         }
-        public void saveNewUserToStorage (MemberModel member)
+        public void saveNewMemberToStorage (MemberModel member)
         {
             updateMemberID ();
             member.ID = MemberID;
