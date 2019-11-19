@@ -14,18 +14,18 @@ namespace _1dv607_boatclub
 
         public Storage ()
         {
-            Members = retrieveMembersList ();
+            _members = retrieveMembersList ();
         }
         public void saveNewMemberToStorage (MemberModel member)
         {
             updateMemberID ();
-            member.ID = MemberID;
+            member.ID = _memberID;
             Members.Add (member);
             saveToFile (Members);
 
         }
 
-        public List<MemberModel> retrieveMembersList ()
+        private List<MemberModel> retrieveMembersList ()
         {
             using (StreamReader reader = new StreamReader (Path.Combine (workingDirectory, "db.json")))
             {
@@ -45,11 +45,11 @@ namespace _1dv607_boatclub
         {
             int lastUsedID = int.Parse (getMemberID ());
             lastUsedID += 1;
-            MemberID = lastUsedID.ToString ();
-            setNewMemberID (MemberID);
+            _memberID = lastUsedID.ToString ();
+            setNewMemberID (_memberID);
         }
 
-        public void saveToFile (List<MemberModel> members)
+        private void saveToFile (List<MemberModel> members)
         {
             StreamWriter writer = null;
             try
@@ -129,16 +129,6 @@ namespace _1dv607_boatclub
         public List<MemberModel> Members
         {
             get => _members;
-            set => _members = value;
-        }
-
-        public string MemberID
-        {
-            get => _memberID;
-            set
-            {
-                _memberID = value;
-            }
         }
     }
 }
